@@ -20,7 +20,6 @@
     "s-movil",
     "admin-1",
     "admin-2",
-    "tecnologia",
     "dominio",
     "etapas",
     "decisiones",
@@ -28,10 +27,10 @@
   ],
   "sections": {
     "intro": { "description": "El problema que resolvemos y la propuesta de ZF Alquiler Digital.", "start": "cover" },
-    "plataforma": { "description": "Recorrido por cada pantalla de la plataforma para el cliente.", "start": "s-inicio" },
-    "gestion": { "description": "Panel interno para que el equipo de ZF gestione fichas y consultas.", "start": "admin-1" },
-    "tecnologia": { "description": "Dónde está publicada, cuánto cuesta y opciones de dominio.", "start": "tecnologia" },
-    "proximos": { "description": "Estado actual, próxima etapa y decisiones que necesitamos.", "start": "etapas" }
+    "plataforma": { "description": "Diseño propuesto de cada pantalla para el cliente.", "start": "s-inicio" },
+    "gestion": { "description": "Diseño del panel interno para que el equipo de ZF gestione fichas y consultas.", "start": "admin-1" },
+    "tecnologia": { "description": "Opciones de dominio y su costo.", "start": "dominio" },
+    "proximos": { "description": "Plan de trabajo y decisiones que necesitamos.", "start": "etapas" }
   },
   "faces": {
     "plus-jakarta-sans": {
