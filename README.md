@@ -18,6 +18,29 @@ npm start          # http://localhost:3000
 
 Para desarrollo: `npm run dev`.
 
+## Publicación en Cloudflare
+
+La app se publica en **Cloudflare Workers** con el adaptador [OpenNext](https://opennext.js.org/cloudflare).
+Cloudflare está conectado al repositorio de GitHub: **cada push a `main` publica la versión nueva**.
+
+| Configuración en Cloudflare (Workers Builds) | Valor                                                  |
+| -------------------------------------------- | ------------------------------------------------------ |
+| Comando de build                             | `npx opennextjs-cloudflare build`                      |
+| Comando de deploy                            | `npx opennextjs-cloudflare deploy`                     |
+| Nombre del Worker                            | `zf-alquiler-digital` (en `wrangler.jsonc`)            |
+| URL pública                                  | `https://zf-alquiler-digital.<subdominio>.workers.dev` |
+
+Para probar localmente en el mismo entorno de Cloudflare:
+
+```bash
+npm run cf:build
+npx wrangler dev --persist-to C:/zfwr   # http://localhost:8787 (ruta corta: límite de rutas largas de Windows)
+PW_BASE_URL=http://127.0.0.1:8787 npx playwright test
+```
+
+Notas: Cache Components de Next.js está desactivado porque no funciona en Workers. `next/image` sirve las fotos
+sin optimizar: ya están optimizadas en `public/`. Ver ADR 0003.
+
 ## Recorrido sugerido para la presentación
 
 1. Inicio → buscador → zona **Nueva Córdoba** → Buscar.

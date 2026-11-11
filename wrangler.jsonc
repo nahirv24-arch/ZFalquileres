@@ -1,0 +1,22 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // Nombre del Worker: define la URL pública https://zf-alquiler-digital.<subdominio>.workers.dev
+  "name": "zf-alquiler-digital",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-11-01",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS",
+  },
+  "services": [
+    {
+      // Auto-referencia que usa OpenNext; el nombre debe coincidir con "name".
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "zf-alquiler-digital",
+    },
+  ],
+  "observability": {
+    "enabled": true,
+  },
+}

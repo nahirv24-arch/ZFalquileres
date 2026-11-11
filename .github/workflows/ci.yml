@@ -39,3 +39,5 @@ jobs:
       - run: npm run build
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e
+      # Verifica que también compile para Cloudflare Workers (el despliegue lo hace Cloudflare).
+      - run: npm run cf:build

@@ -5,3 +5,5 @@ prisma/migrations
 package-lock.json
 test-results
 playwright-report
+.open-next
+.wrangler
