@@ -16,6 +16,11 @@ const ROUTES = [
   "/admin/consultas",
 ];
 
+/** Espera a que React haya hidratado la página (no depende de la red, p. ej. el mapa). */
+async function hydrated(page: Page) {
+  await page.locator("html[data-hydrated]").waitFor({ state: "attached" });
+}
+
 function trackConsoleErrors(page: Page) {
   const errors: string[] = [];
   page.on("console", (m) => {
@@ -73,7 +78,7 @@ test("recorrido para gerencia: buscar, filtrar, abrir ficha, galería, plano, 3D
   await expect(page.getByRole("heading", { level: 1 })).toContainText("Nueva Córdoba");
 
   // 5. Recorrer fotos
-  await page.waitForLoadState("networkidle");
+  await hydrated(page);
   const counter = page.locator("p[aria-live=polite]", { hasText: "/ 5" });
   await expect(counter).toContainText("1 / 5");
   await page.getByRole("button", { name: "Foto siguiente" }).first().click();
@@ -111,7 +116,7 @@ test("recorrido para gerencia: buscar, filtrar, abrir ficha, galería, plano, 3D
 
 test("comparar dos departamentos y consultar", async ({ page }) => {
   await page.goto("/alquileres?barrio=Nueva+Córdoba");
-  await page.waitForLoadState("networkidle");
+  await hydrated(page);
   // Al marcar uno, su botón pasa a «En comparación»: el siguiente «Comparar» vuelve a ser el primero.
   await page
     .getByRole("button", { name: /^Comparar/ })
@@ -133,7 +138,7 @@ test("comparar dos departamentos y consultar", async ({ page }) => {
   // 11. Consulta desde el comparador
   await table.getByRole("link", { name: "Consultar" }).first().click();
   await expect(page).toHaveURL(/contacto\?propiedad=/);
-  await page.waitForLoadState("networkidle");
+  await hydrated(page);
   await page.getByRole("button", { name: "Enviar consulta" }).click();
   await expect(page.getByRole("alert").first()).toContainText("Revisá los campos");
   await page.getByLabel(/Nombre y apellido/).fill("Persona de Prueba");
@@ -154,7 +159,7 @@ test("estado vacío del catálogo", async ({ page }) => {
 test("panel: editar medidas recalcula y avisa que no guarda", async ({ page }) => {
   await page.goto("/admin/propiedades/departamento-1-dormitorio-balcon-nueva-cordoba");
   await expect(page.getByText("Panel de demostración.")).toBeVisible();
-  await page.waitForLoadState("networkidle");
+  await hydrated(page);
   const largo = page.getByLabel("Dormitorio: largo en metros");
   await largo.fill("4,00");
   await page.getByRole("button", { name: "Validar cambios" }).click();
@@ -170,7 +175,7 @@ test("sin scroll horizontal a 320 px (RNF-007)", async ({ page }) => {
     "/mudanza",
   ]) {
     await page.goto(route);
-    await page.waitForLoadState("networkidle");
+    await hydrated(page);
     const wide = await page.evaluate(() => {
       const w = document.documentElement.clientWidth;
       if (document.documentElement.scrollWidth <= w) return [];
