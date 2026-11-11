@@ -1,59 +1,80 @@
 @import "tailwindcss";
 
 /*
- * Tokens de marca ZF — VALORES PROVISORIOS (decisión pendiente D-06).
- * Reemplazar por los HEX oficiales cuando ZF los entregue; el resto del código
- * usa solo estos tokens, así que el cambio se hace en un único lugar.
- * Contrastes verificados contra blanco para WCAG AA (texto normal >= 4.5:1).
+ * Tokens de marca ZF.
+ * Rojo y azul tomados de la web institucional (www.zfpropiedades.com.ar): #df0c1d y #253d47.
+ * Pendiente de confirmación con los activos oficiales (D-06). Todo el código usa solo estos tokens.
+ * Contrastes sobre blanco: rojo 5,0:1 · azul 11,4:1 · texto secundario 5,6:1 (WCAG AA).
  */
 :root {
-  --zf-navy: #12324a; /* azul oscuro: subtítulos, encabezados, header */
-  --zf-petrol: #1d5566; /* azul petróleo: superficies de marca */
-  --zf-coral: #c73e33; /* rojo/coral de acento: CTA y títulos destacados (texto blanco encima) */
-  --zf-coral-hover: #a83228;
+  --zf-red: #df0c1d;
+  --zf-red-dark: #b50a17;
+  --zf-red-soft: #fdecee;
+  --zf-navy: #253d47;
+  --zf-navy-dark: #1a2c34;
+  --zf-navy-soft: #e9eff1;
   --zf-bg: #ffffff;
-  --zf-surface: #f4f7f9;
-  --zf-border: #d5dee5;
-  --zf-text: #1b2730;
-  --zf-muted: #51606b;
-  --zf-focus: #1d5566;
+  --zf-surface: #f5f7f8;
+  --zf-border: #dfe5e8;
+  --zf-text: #1d2a30;
+  --zf-muted: #56656c;
+  --zf-success: #1f7a4d;
+  --zf-success-soft: #e8f5ee;
+  --zf-warning: #8a5a00;
+  --zf-warning-soft: #fff6e0;
+  --zf-room-selected: #cfe3f7;
+  --zf-room-selected-stroke: #2a6db0;
 }
 
 @theme inline {
+  --color-zf-red: var(--zf-red);
+  --color-zf-red-dark: var(--zf-red-dark);
+  --color-zf-red-soft: var(--zf-red-soft);
   --color-zf-navy: var(--zf-navy);
-  --color-zf-petrol: var(--zf-petrol);
-  --color-zf-coral: var(--zf-coral);
-  --color-zf-coral-hover: var(--zf-coral-hover);
+  --color-zf-navy-dark: var(--zf-navy-dark);
+  --color-zf-navy-soft: var(--zf-navy-soft);
   --color-zf-bg: var(--zf-bg);
   --color-zf-surface: var(--zf-surface);
   --color-zf-border: var(--zf-border);
   --color-zf-text: var(--zf-text);
   --color-zf-muted: var(--zf-muted);
-  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --color-zf-success: var(--zf-success);
+  --color-zf-success-soft: var(--zf-success-soft);
+  --color-zf-warning: var(--zf-warning);
+  --color-zf-warning-soft: var(--zf-warning-soft);
+  --font-sans: var(--font-jakarta), system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 }
 
 html {
   font-size: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
 }
 
 body {
   background: var(--zf-bg);
   color: var(--zf-text);
   font-family: var(--font-sans);
-  line-height: 1.6;
+  line-height: 1.55;
 }
 
 :focus-visible {
-  outline: 3px solid var(--zf-focus);
+  outline: 3px solid var(--zf-navy);
   outline-offset: 2px;
 }
 
+dialog::backdrop {
+  background: rgb(10 18 22 / 0.88);
+}
+
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
   *,
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
   }
 }
