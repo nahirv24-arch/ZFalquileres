@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+/*
+ * Tokens de marca ZF — VALORES PROVISORIOS (decisión pendiente D-06).
+ * Reemplazar por los HEX oficiales cuando ZF los entregue; el resto del código
+ * usa solo estos tokens, así que el cambio se hace en un único lugar.
+ * Contrastes verificados contra blanco para WCAG AA (texto normal >= 4.5:1).
+ */
+:root {
+  --zf-navy: #12324a; /* azul oscuro: subtítulos, encabezados, header */
+  --zf-petrol: #1d5566; /* azul petróleo: superficies de marca */
+  --zf-coral: #c73e33; /* rojo/coral de acento: CTA y títulos destacados (texto blanco encima) */
+  --zf-coral-hover: #a83228;
+  --zf-bg: #ffffff;
+  --zf-surface: #f4f7f9;
+  --zf-border: #d5dee5;
+  --zf-text: #1b2730;
+  --zf-muted: #51606b;
+  --zf-focus: #1d5566;
+}
+
+@theme inline {
+  --color-zf-navy: var(--zf-navy);
+  --color-zf-petrol: var(--zf-petrol);
+  --color-zf-coral: var(--zf-coral);
+  --color-zf-coral-hover: var(--zf-coral-hover);
+  --color-zf-bg: var(--zf-bg);
+  --color-zf-surface: var(--zf-surface);
+  --color-zf-border: var(--zf-border);
+  --color-zf-text: var(--zf-text);
+  --color-zf-muted: var(--zf-muted);
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+html {
+  font-size: 100%;
+}
+
+body {
+  background: var(--zf-bg);
+  color: var(--zf-text);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+}
+
+:focus-visible {
+  outline: 3px solid var(--zf-focus);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

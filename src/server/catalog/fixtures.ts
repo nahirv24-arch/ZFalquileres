@@ -1,0 +1,73 @@
+import type { NormalizedProperty } from "./types";
+
+/**
+ * DATOS FICTICIOS para desarrollo local.
+ * No corresponden a inmuebles reales de ZF. Precios, ubicaciones y superficies son inventados
+ * a propósito y están marcados como tales en el título.
+ */
+export const FIXTURE_PROPERTIES: NormalizedProperty[] = [
+  {
+    source: "fixture",
+    externalId: "FX-001",
+    title: "[FICTICIO] Departamento 2 dormitorios con balcón",
+    description: "Propiedad de ejemplo para desarrollo. No es un inmueble real.",
+    propertyType: "Departamento",
+    neighborhood: "Nueva Córdoba",
+    addressDisplay: "Nueva Córdoba (ubicación aproximada)",
+    rentAmount: 450000,
+    rentCurrency: "ARS",
+    bedrooms: 2,
+    rooms: 3,
+    coveredAreaM2: 58,
+    availability: "AVAILABLE",
+    publishable: true,
+  },
+  {
+    source: "fixture",
+    externalId: "FX-002",
+    title: "[FICTICIO] Monoambiente luminoso",
+    description: null,
+    propertyType: "Departamento",
+    neighborhood: "General Paz",
+    addressDisplay: null,
+    rentAmount: 290000,
+    rentCurrency: "ARS",
+    bedrooms: 0,
+    rooms: 1,
+    coveredAreaM2: 32,
+    availability: "UNCONFIRMED",
+    publishable: true,
+  },
+  {
+    source: "fixture",
+    externalId: "FX-003",
+    title: "[FICTICIO] Casa 3 dormitorios con patio",
+    description: "Ejemplo con datos incompletos para probar el texto Dato no informado.",
+    propertyType: "Casa",
+    neighborhood: "Cerro de las Rosas",
+    addressDisplay: "Cerro de las Rosas (ubicación aproximada)",
+    rentAmount: null,
+    rentCurrency: null,
+    bedrooms: 3,
+    rooms: null,
+    coveredAreaM2: null,
+    availability: "AVAILABLE",
+    publishable: true,
+  },
+  {
+    source: "fixture",
+    externalId: "FX-004",
+    title: "[FICTICIO] Departamento ya alquilado",
+    description: "Debe quedar fuera del catálogo público (RF-001).",
+    propertyType: "Departamento",
+    neighborhood: "Alberdi",
+    addressDisplay: null,
+    rentAmount: 380000,
+    rentCurrency: "ARS",
+    bedrooms: 1,
+    rooms: 2,
+    coveredAreaM2: 45,
+    availability: "RENTED",
+    publishable: true,
+  },
+];
